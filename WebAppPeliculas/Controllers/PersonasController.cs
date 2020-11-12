@@ -2,27 +2,51 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppPeliculas;
 using WebAppPeliculas.Models;
+using WebAppPeliculas.ViewModel;
 
 namespace WebAppPeliculas.Controllers
 {
     public class PersonasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment _env;
 
-        public PersonasController(ApplicationDbContext context)
+        public PersonasController(ApplicationDbContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Personas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pagina = 1)
         {
-            return View(await _context.Personas.ToListAsync());
+            var applicationDbContext = _context.Personas;
+
+            //Paginado
+            int RegistrosPorPagina = 4;
+
+            var registrosMostrar = applicationDbContext
+                        .Skip((pagina - 1) * RegistrosPorPagina)
+                        .Take(RegistrosPorPagina);
+
+            //Crear modelo para la vista
+            PersonaViewModel personaViewModel = new PersonaViewModel()
+            {
+                Personas = await registrosMostrar.ToListAsync(),
+                //ListaCursos = new SelectList(_context.Cursos, "Id", "Descripcion", CursoId),
+            };
+
+            personaViewModel.Paginador.PaginaActual = pagina;
+            personaViewModel.Paginador.RegistrosPorPagina = RegistrosPorPagina;
+            personaViewModel.Paginador.TotalRegistros = await applicationDbContext.CountAsync();
+
+            return View(personaViewModel);
         }
 
         // GET: Personas/Details/5

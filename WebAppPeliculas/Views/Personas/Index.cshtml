@@ -1,38 +1,46 @@
-﻿@model IEnumerable<WebAppPeliculas.Models.Persona>
+﻿@model WebAppPeliculas.ViewModel.PersonaViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Personas";
 }
 
-<h1>Index</h1>
+<h1>Personas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-info" asp-action="Create">Agregar Persona</a>
 </p>
-<table class="table">
+
+<!-- Paginacion (Transformada a componente)-->
+<partial name="_Paginador" for="@Model.Paginador" />
+
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                Acciones
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Apellido)
+                @Html.DisplayNameFor(model => model.Personas[0].Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaNacimiento)
+                @Html.DisplayNameFor(model => model.Personas[0].Apellido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Biografia)
+                @Html.DisplayNameFor(model => model.Personas[0].FechaNacimiento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FotoCarnet)
+                @Html.DisplayNameFor(model => model.Personas[0].FotoCarnet)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model.Personas)
+        {
         <tr>
+            <td>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
@@ -43,17 +51,9 @@
                 @Html.DisplayFor(modelItem => item.FechaNacimiento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Biografia)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FotoCarnet)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
         </tr>
-}
+        }
     </tbody>
 </table>

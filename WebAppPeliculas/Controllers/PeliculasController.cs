@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppPeliculas;
 using WebAppPeliculas.Models;
+using WebAppPeliculas.ViewModel;
 
 namespace WebAppPeliculas.Controllers
 {
@@ -20,10 +21,30 @@ namespace WebAppPeliculas.Controllers
         }
 
         // GET: Peliculas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pagina = 1)
         {
-            var applicationDbContext = _context.Peliculas.Include(p => p.Genero);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = _context.Peliculas
+                .Include(p => p.Genero);
+
+            //Paginado
+            int RegistrosPorPagina = 4;
+
+            var registrosMostrar = applicationDbContext
+                        .Skip((pagina - 1) * RegistrosPorPagina)
+                        .Take(RegistrosPorPagina);
+
+            //Crear modelo para la vista
+            PeliculaViewModel peliculaViewModel = new PeliculaViewModel()
+            {
+                Peliculas = await registrosMostrar.ToListAsync(),
+                //ListaCursos = new SelectList(_context.Cursos, "Id", "Descripcion", CursoId),
+            };
+
+            peliculaViewModel.Paginador.PaginaActual = pagina;
+            peliculaViewModel.Paginador.RegistrosPorPagina = RegistrosPorPagina;
+            peliculaViewModel.Paginador.TotalRegistros = await applicationDbContext.CountAsync();
+
+            return View(peliculaViewModel);
         }
 
         // GET: Peliculas/Details/5

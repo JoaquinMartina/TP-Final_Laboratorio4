@@ -1,65 +1,46 @@
-﻿@model IEnumerable<WebAppPeliculas.Models.Pelicula>
+﻿@model WebAppPeliculas.ViewModel.PeliculaViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Peliculas";
 }
 
-<h1>Index</h1>
+<h1>Peliculas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-info" asp-action="Create">Agregar Película</a>
 </p>
-<table class="table">
+
+<!-- Paginacion (Transformada a componente)-->
+<partial name="_Paginador" for="@Model.Paginador" />
+
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Titulo)
+                @Html.DisplayNameFor(model => model.Peliculas[0].FotoCartel)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaEstreno)
+                @Html.DisplayNameFor(model => model.Peliculas[0].Titulo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FotoCartel)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trailer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resumen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genero)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model.Peliculas)
+        {
         <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">>@Html.DisplayFor(modelItem => item.FotoCartel)</a>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Titulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaEstreno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FotoCartel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trailer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Resumen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genero.Descripcion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
