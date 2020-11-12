@@ -27,7 +27,7 @@ namespace WebAppPeliculas.Controllers
                 .Include(p => p.Genero);
 
             //Paginado
-            int RegistrosPorPagina = 4;
+            int RegistrosPorPagina = 9;
 
             var registrosMostrar = applicationDbContext
                         .Skip((pagina - 1) * RegistrosPorPagina)

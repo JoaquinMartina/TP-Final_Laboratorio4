@@ -4,7 +4,7 @@
     ViewData["Title"] = "Peliculas";
 }
 
-<h1>Peliculas</h1>
+<h1>Películas</h1>
 
 <p>
     <a class="btn btn-info" asp-action="Create">Agregar Película</a>
@@ -13,34 +13,57 @@
 <!-- Paginacion (Transformada a componente)-->
 <partial name="_Paginador" for="@Model.Paginador" />
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Peliculas[0].FotoCartel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Peliculas[0].Titulo)
-            </th>
-            <th>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Peliculas)
-        {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">>@Html.DisplayFor(modelItem => item.FotoCartel)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<h2>En cartelera</h2><br />
+
+<div class="row">
+    @foreach (var item in Model.Peliculas)
+    {
+        <div>
+            @if (item.Cartelera == true)
+            {
+                <div class="col-sm-3">
+                    <div class="card rounded border-success mb-5" style="width: 15rem;">
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.FotoCartel) alt=@Html.DisplayFor(modelItem => item.Titulo)>
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Titulo)</h5>
+                            <div class="">
+                                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div><br />
+
+<h2>Próximos estrenos</h2><br />
+
+<div class="row">
+    @foreach (var item in Model.Peliculas)
+    {
+        <div>
+            @if (item.Cartelera == false)
+            {
+                <div class="col-sm-3">
+                    <div class="card rounded border-danger mb-5" style="width: 15rem">
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.FotoCartel) alt=@Html.DisplayFor(modelItem => item.Titulo)>
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Titulo)</h5>
+                            <div class="">
+                                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+

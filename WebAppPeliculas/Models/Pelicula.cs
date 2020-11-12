@@ -32,5 +32,8 @@ namespace WebAppPeliculas.Models
         public int? GeneroId { get; set; }
         public Genero Genero { get; set; }
 
+        [Display(Name = "En cartelera")]
+        public bool Cartelera { get; set; }
+
     }
 }
