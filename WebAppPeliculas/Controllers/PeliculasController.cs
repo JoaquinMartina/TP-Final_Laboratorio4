@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +16,12 @@ namespace WebAppPeliculas.Controllers
     public class PeliculasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment _env;
 
-        public PeliculasController(ApplicationDbContext context)
+        public PeliculasController(ApplicationDbContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Peliculas
@@ -78,10 +82,27 @@ namespace WebAppPeliculas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,FechaEstreno,FotoCartel,Trailer,Resumen,GeneroId")] Pelicula pelicula)
+        public async Task<IActionResult> Create([Bind("Id,Titulo,FechaEstreno,FotoCartel,Trailer,Resumen,GeneroId,Cartelera")] Pelicula pelicula)
         {
             if (ModelState.IsValid)
             {
+                var archivos = HttpContext.Request.Form.Files;
+                if (archivos != null && archivos.Count > 0)
+                {
+                    var archivoFoto = archivos[0];
+                    var pathDestino = Path.Combine(_env.WebRootPath, "images\\peliculas");
+                    if (archivoFoto.Length > 0)
+                    {
+                        var archivoDestino = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(archivoFoto.FileName);
+
+                        using (var filestream = new FileStream(Path.Combine(pathDestino, archivoDestino), FileMode.Create))
+                        {
+                            archivoFoto.CopyTo(filestream);
+                            pelicula.FotoCartel = archivoDestino;
+                        }
+                    }
+                }
+
                 _context.Add(pelicula);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
