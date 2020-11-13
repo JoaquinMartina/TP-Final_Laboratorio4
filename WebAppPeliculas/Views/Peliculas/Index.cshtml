@@ -15,16 +15,21 @@
 
 <h2>En cartelera</h2><br />
 
+@if (Model.Paginador.TotalRegistros == 0)
+{
+    <h1>No hay películas en cartelera</h1>
+}
+
 <div class="row">
     @foreach (var item in Model.Peliculas)
     {
-        <div>
+        <div class="text-center">
             @if (item.Cartelera == true)
             {
                 <div class="col-sm-3">
-                    <div class="card rounded border-success mb-5" style="width: 15rem;">
+                    <div class="card text-white border-success bg-dark rounded" style="width: 15rem">
                         <a asp-action="Details" asp-route-id="@item.Id">
-                            <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.FotoCartel) alt=@Html.DisplayFor(modelItem => item.Titulo)>
+                            <img src="~/images/peliculas/@item.FotoCartel" height="260" width="207" asp-append-version="true" alt=@Html.DisplayFor(modelItem => item.Titulo) />
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Titulo)</h5>
@@ -42,16 +47,21 @@
 
 <h2>Próximos estrenos</h2><br />
 
+@if (Model.Paginador.TotalRegistros == 0)
+{
+    <h1>No hay películas para próximos estrenos</h1>
+}
+
 <div class="row">
     @foreach (var item in Model.Peliculas)
     {
-        <div>
+        <div class="text-center">
             @if (item.Cartelera == false)
             {
                 <div class="col-sm-3">
-                    <div class="card rounded border-danger mb-5" style="width: 15rem">
+                    <div class="card text-white border-danger bg-dark rounded" style="width: 15rem">
                         <a asp-action="Details" asp-route-id="@item.Id">
-                            <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.FotoCartel) alt=@Html.DisplayFor(modelItem => item.Titulo)>
+                            <img src="~/images/peliculas/@item.FotoCartel" height="260" width="207" asp-append-version="true" alt=@Html.DisplayFor(modelItem => item.Titulo) />
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Titulo)</h5>
@@ -65,5 +75,5 @@
             }
         </div>
     }
-</div>
+</div><br />
 

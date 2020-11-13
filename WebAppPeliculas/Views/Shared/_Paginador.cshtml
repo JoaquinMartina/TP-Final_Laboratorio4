@@ -3,7 +3,7 @@
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
         <li class="page-item @(Model.PaginaActual==1 ? "disabled": "")">
-            <a class="page-link" asp-all-route-data="@Model.ValoresQueryString" asp-route-pagina="@(Model.PaginaActual - 1)" tabindex="-1" aria-disabled="true">Anterior</a>
+            <a class="page-link bg-dark text-white" asp-all-route-data="@Model.ValoresQueryString" asp-route-pagina="@(Model.PaginaActual - 1)" tabindex="-1" aria-disabled="true">Anterior</a>
         </li>
 
         @if (Model.PaginaActual > 2)
@@ -32,7 +32,7 @@
         }
 
         <li class="page-item @(Model.PaginaActual==Model.TotalPaginas ? "disabled": "")">
-            <a class="page-link" asp-all-route-data="@Model.ValoresQueryString" asp-route-pagina="@(Model.PaginaActual + 1)">Siguiente</a>
+            <a class="page-link bg-dark text-white" asp-all-route-data="@Model.ValoresQueryString" asp-route-pagina="@(Model.PaginaActual + 1)">Siguiente</a>
         </li>
     </ul>
 </nav>
