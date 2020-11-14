@@ -7,7 +7,7 @@
 <h1>Editar Película</h1>
 
 <hr />
-<form asp-action="Create" enctype="multipart/form-data" method="post">
+<form asp-action="Edit" enctype="multipart/form-data" method="post">
     <div class="form-row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group col-md-6 ">
@@ -22,12 +22,26 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <div class="custom-control custom-checkbox">
-                <input asp-for="Cartelera" type="checkbox" class="form control form-check-input" id="exampleCheck1">
-                <label asp-for="Cartelera" class="form-check-label" for="exampleCheck1"></label>
+
+        @if (Model.Cartelera == true)
+        {
+            <div class="form-group col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input asp-for="Cartelera" type="checkbox" class="form control form-check-input" id="exampleCheck1" readonly onclick="javascript: return false;">
+                    <label asp-for="Cartelera" class="form-check-label" for="exampleCheck1"></label>
+                </div>
             </div>
-        </div>
+        }
+        @if (Model.Cartelera == false)
+        {
+            <div class="form-group col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input asp-for="Cartelera" type="checkbox" class="form control form-check-input" id="exampleCheck1">
+                    <label asp-for="Cartelera" class="form-check-label" for="exampleCheck1"></label>
+                </div>
+            </div>
+        }
+
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
