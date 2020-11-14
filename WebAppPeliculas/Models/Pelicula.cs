@@ -25,10 +25,12 @@ namespace WebAppPeliculas.Models
         [Display(Name = "Video Trailer")]
         public string Trailer { get; set; }
 
+        [Display(Name = "Resumen")]
         [Required(ErrorMessage = "Este campo no debe ser vacío")]
         public string Resumen { get; set; }
 
         [Display(Name = "Género")]
+        [Required(ErrorMessage = "Debe seleccionar al menos un género")]
         public int? GeneroId { get; set; }
         public Genero Genero { get; set; }
 

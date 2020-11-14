@@ -133,7 +133,7 @@ namespace WebAppPeliculas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,FechaEstreno,FotoCartel,Trailer,Resumen,GeneroId")] Pelicula pelicula)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,FechaEstreno,FotoCartel,Trailer,Resumen,GeneroId,Cartelera")] Pelicula pelicula)
         {
             if (id != pelicula.Id)
             {
@@ -142,6 +142,30 @@ namespace WebAppPeliculas.Controllers
 
             if (ModelState.IsValid)
             {
+                var archivos = HttpContext.Request.Form.Files;
+                if (archivos != null && archivos.Count > 0)
+                {
+                    var archivoFoto = archivos[0];
+                    var pathDestino = Path.Combine(_env.WebRootPath, "images\\peliculas");
+                    if (archivoFoto.Length > 0)
+                    {
+
+                        var archivoDestino = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(archivoFoto.FileName);
+
+                        using (var filestream = new FileStream(Path.Combine(pathDestino, archivoDestino), FileMode.Create))
+                        {
+                            archivoFoto.CopyTo(filestream);
+
+                            string viejoArchivo = Path.Combine(pathDestino, pelicula.FotoCartel);
+                            if (System.IO.File.Exists(viejoArchivo))
+                            {
+                                System.IO.File.Delete(viejoArchivo);
+                            }
+                            pelicula.FotoCartel = archivoDestino;
+                        }
+                    }
+                }
+
                 try
                 {
                     _context.Update(pelicula);

@@ -10,21 +10,21 @@
 <form asp-action="Create" enctype="multipart/form-data" method="post">
     <div class="form-row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 ">
             <label asp-for="Titulo" class="control-label"></label>
             <input asp-for="Titulo" class="form-control" />
             <span asp-validation-for="Titulo" class="text-danger"></span>
         </div>
         <div class="form-group col-md-6">
             <label asp-for="FechaEstreno" class="control-label"></label>
-            <input asp-for="FechaEstreno" class="form-control" />
+            <input asp-for="FechaEstreno" class="form-control" type="date"/>
             <span asp-validation-for="FechaEstreno" class="text-danger"></span>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <div class="custom-control custom-checkbox">
-                <input asp-for="Cartelera" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <input asp-for="Cartelera" type="checkbox" class="form control form-check-input" id="exampleCheck1">
                 <label asp-for="Cartelera" class="form-check-label" for="exampleCheck1"></label>
             </div>
         </div>
@@ -36,15 +36,20 @@
         </div>
         <div class="form-group col-md-6">
             <label asp-for="Trailer" class="control-label"></label>
-            <input asp-for="Trailer" class="form-control" />
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Link Embed</div>
+                </div>
+                <input asp-for="Trailer" class="form-control" />
+            </div>
             <span asp-validation-for="Trailer" class="text-danger"></span>
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label asp-for="FotoCartel" class="cotrol-label"></label>
-            <img src="" id="image" alt="Imágen seleccionada" height="260" width="207" asp-append-version="true" />
-            <input asp-for="FotoCartel" id="img" type="file" class="form-control" />
+            <img src="" id="image" alt="Imágen seleccionada" height="300" width="247" asp-append-version="true" />
+            <input asp-for="FotoCartel" type="file" id="img" class="form-control">
         </div>
     </div>
     <div class="form-row">
