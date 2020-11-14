@@ -156,7 +156,7 @@ namespace WebAppPeliculas.Controllers
                         {
                             archivoFoto.CopyTo(filestream);
 
-                            string viejoArchivo = Path.Combine(pathDestino, pelicula.FotoCartel);
+                            string viejoArchivo = Path.Combine(pathDestino, pelicula.FotoCartel ?? "");
                             if (System.IO.File.Exists(viejoArchivo))
                             {
                                 System.IO.File.Delete(viejoArchivo);
