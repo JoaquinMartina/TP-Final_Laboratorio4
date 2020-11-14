@@ -14,3 +14,5 @@ Trabajo Practico  .Net Core - EntityFramework
   - update-database (construir Base de datos con respectivas tablas)
   
   - Compilar y Ejecutar
+  
+- Pruebas Funcionales: (**Detallar**)
