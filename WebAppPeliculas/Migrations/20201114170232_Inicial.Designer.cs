@@ -10,8 +10,8 @@ using WebAppPeliculas;
 namespace WebAppPeliculas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201114132440_Pelicula-Persona_add_List-PeliculaActor")]
-    partial class PeliculaPersona_add_ListPeliculaActor
+    [Migration("20201114170232_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
