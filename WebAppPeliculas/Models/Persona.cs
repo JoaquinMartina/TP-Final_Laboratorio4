@@ -28,5 +28,6 @@ namespace WebAppPeliculas.Models
         [Display(Name = "Foto Persona")]
         public string FotoCarnet { get; set; }
 
+        public List<PeliculaActor> PeliculasActores { get; set; }
     }
 }

@@ -37,5 +37,6 @@ namespace WebAppPeliculas.Models
         [Display(Name = "En cartelera")]
         public bool Cartelera { get; set; }
 
+        public List<PeliculaActor> PeliculasActores { get; set; }
     }
 }

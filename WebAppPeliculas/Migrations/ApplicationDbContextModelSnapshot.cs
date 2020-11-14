@@ -45,7 +45,8 @@ namespace WebAppPeliculas.Migrations
 
                     b.Property<string>("FotoCartel");
 
-                    b.Property<int?>("GeneroId");
+                    b.Property<int?>("GeneroId")
+                        .IsRequired();
 
                     b.Property<string>("Resumen")
                         .IsRequired();
@@ -104,18 +105,19 @@ namespace WebAppPeliculas.Migrations
                 {
                     b.HasOne("WebAppPeliculas.Models.Genero", "Genero")
                         .WithMany()
-                        .HasForeignKey("GeneroId");
+                        .HasForeignKey("GeneroId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebAppPeliculas.Models.PeliculaActor", b =>
                 {
                     b.HasOne("WebAppPeliculas.Models.Pelicula", "Pelicula")
-                        .WithMany()
+                        .WithMany("PeliculasActores")
                         .HasForeignKey("PeliculaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WebAppPeliculas.Models.Persona", "Actor")
-                        .WithMany()
+                        .WithMany("PeliculasActores")
                         .HasForeignKey("PersonaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

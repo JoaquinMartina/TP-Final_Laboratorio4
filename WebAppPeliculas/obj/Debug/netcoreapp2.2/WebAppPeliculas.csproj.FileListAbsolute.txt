@@ -42,10 +42,10 @@ D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\Peliculas\Delete.g.cshtml.cs
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\Peliculas\Details.g.cshtml.cs
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\Peliculas\Edit.g.cshtml.cs
-D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\Peliculas\Index.g.cshtml.cs
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculasActores\Create.g.cshtml.cs
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculasActores\Delete.g.cshtml.cs
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculasActores\Details.g.cshtml.cs
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculasActores\Edit.g.cshtml.cs
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculasActores\Index.g.cshtml.cs
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Paginador.g.cshtml.cs
+D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\WebAppPeliculas\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\Peliculas\Index.g.cshtml.cs

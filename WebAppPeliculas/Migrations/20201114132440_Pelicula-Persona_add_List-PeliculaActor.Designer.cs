@@ -10,8 +10,8 @@ using WebAppPeliculas;
 namespace WebAppPeliculas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201112034231_Inicial")]
-    partial class Inicial
+    [Migration("20201114132440_Pelicula-Persona_add_List-PeliculaActor")]
+    partial class PeliculaPersona_add_ListPeliculaActor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,11 +41,14 @@ namespace WebAppPeliculas.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Cartelera");
+
                     b.Property<DateTime>("FechaEstreno");
 
                     b.Property<string>("FotoCartel");
 
-                    b.Property<int?>("GeneroId");
+                    b.Property<int?>("GeneroId")
+                        .IsRequired();
 
                     b.Property<string>("Resumen")
                         .IsRequired();
@@ -104,18 +107,19 @@ namespace WebAppPeliculas.Migrations
                 {
                     b.HasOne("WebAppPeliculas.Models.Genero", "Genero")
                         .WithMany()
-                        .HasForeignKey("GeneroId");
+                        .HasForeignKey("GeneroId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebAppPeliculas.Models.PeliculaActor", b =>
                 {
                     b.HasOne("WebAppPeliculas.Models.Pelicula", "Pelicula")
-                        .WithMany()
+                        .WithMany("PeliculasActores")
                         .HasForeignKey("PeliculaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WebAppPeliculas.Models.Persona", "Actor")
-                        .WithMany()
+                        .WithMany("PeliculasActores")
                         .HasForeignKey("PersonaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

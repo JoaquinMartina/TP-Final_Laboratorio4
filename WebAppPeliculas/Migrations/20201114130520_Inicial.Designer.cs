@@ -10,8 +10,8 @@ using WebAppPeliculas;
 namespace WebAppPeliculas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201112193134_add-atribute-Pelicula")]
-    partial class addatributePelicula
+    [Migration("20201114130520_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,7 +47,8 @@ namespace WebAppPeliculas.Migrations
 
                     b.Property<string>("FotoCartel");
 
-                    b.Property<int?>("GeneroId");
+                    b.Property<int?>("GeneroId")
+                        .IsRequired();
 
                     b.Property<string>("Resumen")
                         .IsRequired();
@@ -106,7 +107,8 @@ namespace WebAppPeliculas.Migrations
                 {
                     b.HasOne("WebAppPeliculas.Models.Genero", "Genero")
                         .WithMany()
-                        .HasForeignKey("GeneroId");
+                        .HasForeignKey("GeneroId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebAppPeliculas.Models.PeliculaActor", b =>

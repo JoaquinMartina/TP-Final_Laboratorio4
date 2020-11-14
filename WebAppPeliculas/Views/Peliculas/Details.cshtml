@@ -38,6 +38,40 @@
 
 <h2>Actores</h2><br />
 
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PeliculasActores[0].Actor.FotoCarnet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PeliculasActores[0].Actor.Nombre)
+            </th>
+            <th>
+                Nombre papel
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PeliculasActores)
+        {
+            <tr>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Actor.FotoCarnet)" id="image" height="80" width="80" asp-append-version="true" />
+                    @Html.DisplayFor(modelItem => item.Actor.FotoCarnet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Actor.Nombre)
+                    @Html.DisplayFor(modelItem => item.Actor.Apellido)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 <div>
     <a class="btn btn-primary btn-lg btn-block" asp-action="Index">Regresar</a>
 </div>

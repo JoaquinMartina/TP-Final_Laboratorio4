@@ -61,6 +61,7 @@ namespace WebAppPeliculas.Controllers
 
             var pelicula = await _context.Peliculas
                 .Include(p => p.Genero)
+                .Include(p => p.PeliculasActores)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pelicula == null)
             {

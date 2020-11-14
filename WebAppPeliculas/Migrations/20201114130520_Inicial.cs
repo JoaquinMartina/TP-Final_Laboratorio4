@@ -49,7 +49,8 @@ namespace WebAppPeliculas.Migrations
                     FotoCartel = table.Column<string>(nullable: true),
                     Trailer = table.Column<string>(nullable: false),
                     Resumen = table.Column<string>(nullable: false),
-                    GeneroId = table.Column<int>(nullable: true)
+                    GeneroId = table.Column<int>(nullable: false),
+                    Cartelera = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,7 +60,7 @@ namespace WebAppPeliculas.Migrations
                         column: x => x.GeneroId,
                         principalTable: "Generos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
