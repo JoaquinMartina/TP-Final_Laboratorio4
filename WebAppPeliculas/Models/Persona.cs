@@ -23,6 +23,7 @@ namespace WebAppPeliculas.Models
         public DateTime FechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "Este campo no debe ser vacío")]
+        [Display(Name = "Biografía")]
         public string Biografia { get; set; }
 
         [Display(Name = "Foto Persona")]

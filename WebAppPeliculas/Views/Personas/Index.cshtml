@@ -17,7 +17,6 @@
     <thead>
         <tr>
             <th>
-                Acciones
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Personas[0].Nombre)
@@ -29,7 +28,6 @@
                 @Html.DisplayNameFor(model => model.Personas[0].FechaNacimiento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].FotoCarnet)
             </th>
         </tr>
     </thead>
@@ -48,10 +46,12 @@
                 @Html.DisplayFor(modelItem => item.Apellido)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                @Html.DisplayFor(modelItem => item.FechaNacimiento.Day) /
+                @Html.DisplayFor(modelItem => item.FechaNacimiento.Month) /
+                @Html.DisplayFor(modelItem => item.FechaNacimiento.Year)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FotoCarnet)
+                <img src="~/images/personas/@item.FotoCarnet" height="90" width="90" asp-append-version="true" />
             </td>
         </tr>
         }

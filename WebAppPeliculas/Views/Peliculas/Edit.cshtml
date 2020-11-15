@@ -25,20 +25,16 @@
 
         @if (Model.Cartelera == true)
         {
-            <div class="form-group col-md-6">
-                <div class="custom-control custom-checkbox">
-                    <input asp-for="Cartelera" type="checkbox" class="form control form-check-input" id="exampleCheck1" readonly onclick="javascript: return false;">
-                    <label asp-for="Cartelera" class="form-check-label" for="exampleCheck1"></label>
-                </div>
+            <div class="form-group col-md-1">
+                <label asp-for="Cartelera" class="control-label"></label>
+                <input asp-for="Cartelera" class="form-control" type="checkbox" readonly onclick="javascript: return false;" />
             </div>
         }
         @if (Model.Cartelera == false)
         {
-            <div class="form-group col-md-6">
-                <div class="custom-control custom-checkbox">
-                    <input asp-for="Cartelera" type="checkbox" class="form control form-check-input" id="exampleCheck1">
-                    <label asp-for="Cartelera" class="form-check-label" for="exampleCheck1"></label>
-                </div>
+            <div class="form-group col-md-1">
+                <label asp-for="Cartelera" class="control-label"></label>
+                <input asp-for="Cartelera" class="form-control" type="checkbox" />
             </div>
         }
 

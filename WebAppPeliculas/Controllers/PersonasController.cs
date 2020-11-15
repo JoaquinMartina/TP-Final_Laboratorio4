@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -82,6 +83,23 @@ namespace WebAppPeliculas.Controllers
         {
             if (ModelState.IsValid)
             {
+                var archivos = HttpContext.Request.Form.Files;
+                if (archivos != null && archivos.Count > 0)
+                {
+                    var archivoFoto = archivos[0];
+                    var pathDestino = Path.Combine(_env.WebRootPath, "images\\personas");
+                    if (archivoFoto.Length > 0)
+                    {
+                        var archivoDestino = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(archivoFoto.FileName);
+
+                        using (var filestream = new FileStream(Path.Combine(pathDestino, archivoDestino), FileMode.Create))
+                        {
+                            archivoFoto.CopyTo(filestream);
+                            persona.FotoCarnet = archivoDestino;
+                        }
+                    }
+                }
+
                 _context.Add(persona);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -119,6 +137,30 @@ namespace WebAppPeliculas.Controllers
 
             if (ModelState.IsValid)
             {
+                var archivos = HttpContext.Request.Form.Files;
+                if (archivos != null && archivos.Count > 0)
+                {
+                    var archivoFoto = archivos[0];
+                    var pathDestino = Path.Combine(_env.WebRootPath, "images\\personas");
+                    if (archivoFoto.Length > 0)
+                    {
+
+                        var archivoDestino = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(archivoFoto.FileName);
+
+                        using (var filestream = new FileStream(Path.Combine(pathDestino, archivoDestino), FileMode.Create))
+                        {
+                            archivoFoto.CopyTo(filestream);
+
+                            string viejoArchivo = Path.Combine(pathDestino, persona.FotoCarnet ?? "");
+                            if (System.IO.File.Exists(viejoArchivo))
+                            {
+                                System.IO.File.Delete(viejoArchivo);
+                            }
+                            persona.FotoCarnet = archivoDestino;
+                        }
+                    }
+                }
+
                 try
                 {
                     _context.Update(persona);
