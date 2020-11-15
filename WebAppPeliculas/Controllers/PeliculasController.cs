@@ -52,23 +52,37 @@ namespace WebAppPeliculas.Controllers
         }
 
         // GET: Peliculas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int pagina = 1)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var pelicula = await _context.Peliculas
+            var applicationDbContext = _context.Peliculas
                 .Include(p => p.Genero)
-                .Include(p => p.PeliculasActores)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (pelicula == null)
+                .Include(p => p.PeliculasActores);
+                //.FirstOrDefaultAsync(m => m.Id == id);
+
+            //Paginado
+            int RegistrosPorPagina = 10;
+
+            var registrosMostrar = applicationDbContext
+                        .Skip((pagina - 1) * RegistrosPorPagina)
+                        .Take(RegistrosPorPagina);
+
+            //Crear modelo para la vista
+            PeliculaViewModel peliculaViewModel = new PeliculaViewModel()
+            {
+                Peliculas = await registrosMostrar.ToListAsync(),
+            };
+
+            if (peliculaViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(pelicula);
+            return View(peliculaViewModel);
         }
 
         // GET: Peliculas/Create

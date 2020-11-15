@@ -11,7 +11,7 @@ namespace WebAppPeliculas.Models
         [Display(Name = "Pelicula")]
         public int PeliculaId { get; set; }
 
-        [Display(Name = "Pelicula")]
+        [Display(Name = "Película")]
         public Pelicula Pelicula { get; set; }
 
         [Display(Name = "Actor")]
@@ -19,5 +19,9 @@ namespace WebAppPeliculas.Models
 
         [Display(Name = "Actor")]
         public Persona Actor { get; set; }
+
+        [Display(Name = "Papel")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string PapelActor { get; set; }
     }
 }

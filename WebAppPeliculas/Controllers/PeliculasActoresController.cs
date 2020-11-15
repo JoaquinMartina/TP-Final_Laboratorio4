@@ -2,28 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppPeliculas;
 using WebAppPeliculas.Models;
+using WebAppPeliculas.ViewModel;
 
 namespace WebAppPeliculas.Controllers
 {
     public class PeliculasActoresController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment _env;
 
-        public PeliculasActoresController(ApplicationDbContext context)
+        public PeliculasActoresController(ApplicationDbContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: PeliculasActores
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pagina=1)
         {
-            var applicationDbContext = _context.PeliculasActores.Include(p => p.Actor).Include(p => p.Pelicula);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = _context.PeliculasActores
+                            .Include(p => p.Actor)
+                            .Include(p => p.Pelicula);
+
+            //Paginado
+            int RegistrosPorPagina = 10;
+
+            var registrosMostrar = applicationDbContext
+                        .Skip((pagina - 1) * RegistrosPorPagina)
+                        .Take(RegistrosPorPagina);
+
+            //Crear modelo para la vista
+            PeliculaActorViewModel peliculaActorViewModel = new PeliculaActorViewModel()
+            {
+                PeliculasActores = await registrosMostrar.ToListAsync(),
+            };
+
+            return View(peliculaActorViewModel);
         }
 
         // GET: PeliculasActores/Details/5
@@ -50,7 +70,7 @@ namespace WebAppPeliculas.Controllers
         public IActionResult Create()
         {
             ViewData["PersonaId"] = new SelectList(_context.Personas, "Id", "Apellido");
-            ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Resumen");
+            ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Titulo");
             return View();
         }
 
@@ -59,7 +79,7 @@ namespace WebAppPeliculas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PeliculaId,PersonaId")] PeliculaActor peliculaActor)
+        public async Task<IActionResult> Create([Bind("PeliculaId,PersonaId,PapelActor")] PeliculaActor peliculaActor)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +88,7 @@ namespace WebAppPeliculas.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PersonaId"] = new SelectList(_context.Personas, "Id", "Apellido", peliculaActor.PersonaId);
-            ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Resumen", peliculaActor.PeliculaId);
+            ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Titulo", peliculaActor.PeliculaId);
             return View(peliculaActor);
         }
 

@@ -1,18 +1,18 @@
-﻿@model WebAppPeliculas.Models.Pelicula
+﻿@model WebAppPeliculas.ViewModel.PeliculaViewModel
 
 @{
     ViewData["Title"] = "Detalle Película";
 }
 
-<h1>@Html.DisplayFor(model => model.Titulo)<span> </span><span>(@Html.DisplayFor(model => model.FechaEstreno.Year))</span></h1><br />
+<h1>@Html.DisplayFor(model => model.Peliculas[0].Titulo)<span> </span><span>(@Html.DisplayFor(model => model.Peliculas[0].FechaEstreno.Year))</span></h1><br />
 <p>
     <span class="text-primary">
-        @Html.DisplayFor(model => model.Genero.Descripcion)
+        @Html.DisplayFor(model => model.Peliculas[0].Genero.Descripcion)
     </span> |
     <span>
-        @Html.DisplayFor(model => model.FechaEstreno.Day)
-        @Html.DisplayFor(model => model.FechaEstreno.Month)
-        @Html.DisplayFor(model => model.FechaEstreno.Year)
+        @Html.DisplayFor(model => model.Peliculas[0].FechaEstreno.Day)
+        @Html.DisplayFor(model => model.Peliculas[0].FechaEstreno.Month)
+        @Html.DisplayFor(model => model.Peliculas[0].FechaEstreno.Year)
     </span> |
     <span>
         Promedio:
@@ -24,16 +24,16 @@
 
 <div class="row">
     <div class="col-sm-3">
-        <img src="~/images/peliculas/@Model.FotoCartel" id="image" height="300" width="247" asp-append-version="true" alt=@Html.DisplayFor(model => model.Titulo) />
+        <img src="~/images/peliculas/@Model.Peliculas[0].FotoCartel" id="image" height="300" width="247" asp-append-version="true" alt=@Html.DisplayFor(model => model.Peliculas[0].Titulo) />
     </div>
     <div class="col-sm-9 embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="@Model.Trailer" height="300" width="700"></iframe>
+        <iframe class="embed-responsive-item" src="@Model.Peliculas[0].Trailer" height="300" width="700"></iframe>
     </div>
 </div><br />
 
-<h2>@Html.DisplayNameFor(model => model.Resumen)</h2><br />
+<h2>@Html.DisplayNameFor(model => model.Peliculas[0].Resumen)</h2><br />
 <p>
-    @Html.DisplayFor(model => model.Resumen)
+    @Html.DisplayFor(model => model.Peliculas[0].Resumen)
 </p>
 
 <h2>Actores</h2><br />
@@ -42,33 +42,18 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PeliculasActores[0].Actor.FotoCarnet)
+                @Html.DisplayNameFor(model => model.Actores[0].FotoCarnet)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PeliculasActores[0].Actor.Nombre)
+                @Html.DisplayNameFor(model => model.Actores[0].Nombre)
             </th>
             <th>
-                Nombre papel
+                @Html.DisplayNameFor(model => model.PeliculasActores[0].PapelActor)
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.PeliculasActores)
-        {
-            <tr>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Actor.FotoCarnet)" id="image" height="80" width="80" asp-append-version="true" />
-                    @Html.DisplayFor(modelItem => item.Actor.FotoCarnet)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Actor.Nombre)
-                    @Html.DisplayFor(modelItem => item.Actor.Apellido)
-                </td>
-                <td>
 
-                </td>
-            </tr>
-        }
     </tbody>
 </table>
 

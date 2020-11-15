@@ -1,39 +1,46 @@
-﻿@model IEnumerable<WebAppPeliculas.Models.PeliculaActor>
+﻿@model WebAppPeliculas.ViewModel.PeliculaActorViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Peliculas-Actores";
 }
 
-<h1>Index</h1>
+<h1>Películas - Actores</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-info" asp-action="Create">Nueva</a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Pelicula)
+                @Html.DisplayNameFor(model => model.PeliculasActores[0].Pelicula)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Actor)
+                @Html.DisplayNameFor(model => model.PeliculasActores[0].Actor)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.PeliculasActores[0].PapelActor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PeliculasActores[0].Actor.FotoCarnet)
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.PeliculasActores) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Pelicula.Resumen)
+                @Html.DisplayFor(modelItem => item.Pelicula.Titulo)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Actor.Nombre)
                 @Html.DisplayFor(modelItem => item.Actor.Apellido)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.PapelActor)
+            </td>
+            <td>
+                <img src="~/images/personas/@item.Actor.FotoCarnet" height="90" width="90" asp-append-version="true" />
             </td>
         </tr>
 }

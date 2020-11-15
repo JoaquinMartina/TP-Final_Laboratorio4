@@ -10,8 +10,8 @@ using WebAppPeliculas;
 namespace WebAppPeliculas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201114170232_Inicial")]
-    partial class Inicial
+    [Migration("20201115152150_PeliculaActor")]
+    partial class PeliculaActor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,6 +71,9 @@ namespace WebAppPeliculas.Migrations
                     b.Property<int>("PersonaId");
 
                     b.Property<int>("PeliculaId");
+
+                    b.Property<string>("PapelActor")
+                        .IsRequired();
 
                     b.HasKey("PersonaId", "PeliculaId");
 
