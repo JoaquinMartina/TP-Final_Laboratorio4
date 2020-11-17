@@ -31,7 +31,7 @@ namespace WebAppPeliculas.Controllers
                             .Include(p => p.Pelicula);
 
             //Paginado
-            int RegistrosPorPagina = 10;
+            int RegistrosPorPagina = 20;
 
             var registrosMostrar = applicationDbContext
                         .Skip((pagina - 1) * RegistrosPorPagina)
@@ -62,6 +62,10 @@ namespace WebAppPeliculas.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["PersonaId"] = new SelectList(_context.Personas, "Id", "Nombre");
+            ViewData["PersonaId"] = new SelectList(_context.Personas, "Id", "Apellido");
+            ViewData["PersonaId"] = new SelectList(_context.Personas, "Id", "FotoCarnet");
 
             return View(peliculaActor);
         }

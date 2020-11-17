@@ -38,41 +38,51 @@
 
 <h2>Actores</h2><br />
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PeliculaActor[0].Actor.FotoCarnet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PeliculaActor[0].Actor.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PeliculaActor[0].PapelActor)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.PeliculaActor)
-        {
+@if (Model.PeliculasActores == null)
+{
+    <div>
+        No existen actores para esta pelicula
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td>
-                    <img src="~/images/personas/@item.Actor.FotoCarnet" height="90" width="90" asp-append-version="true" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Actor.Nombre)
-                    @Html.DisplayFor(modelItem => item.Actor.Apellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PapelActor)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.PeliculasActores[0].Actor.FotoCarnet)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PeliculasActores[0].Actor.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PeliculasActores[0].PapelActor)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PeliculasActores)
+            {
+                <tr>
+                    <td>
+                        <img src="~/images/personas/@item.Actor.FotoCarnet" height="90" width="90" asp-append-version="true" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Actor.Nombre)
+                        @Html.DisplayFor(modelItem => item.Actor.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PapelActor)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<div>
-    <a class="btn btn-primary btn-lg btn-block" asp-action="Index">Regresar</a>
-</div>
+    <div>
+        <a class="btn btn-primary btn-lg btn-block" asp-action="Index">Regresar</a>
+    </div>
+}
+
 
 

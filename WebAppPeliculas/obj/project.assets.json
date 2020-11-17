@@ -12946,11 +12946,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Usuario\\Documents\\Facultad\\2-Tecnicatura en Programacion\\2do Año\\Laboratorio IV\\TP-Final\\WebAppPeliculas\\WebAppPeliculas\\WebAppPeliculas.csproj",
+      "projectUniqueName": "D:\\Usuario\\Documents\\Facultad\\2-Tecnicatura en Programacion\\2do Año\\Laboratorio IV\\TP-Final\\TP-Final_Laboratorio4\\WebAppPeliculas\\WebAppPeliculas.csproj",
       "projectName": "WebAppPeliculas",
-      "projectPath": "D:\\Usuario\\Documents\\Facultad\\2-Tecnicatura en Programacion\\2do Año\\Laboratorio IV\\TP-Final\\WebAppPeliculas\\WebAppPeliculas\\WebAppPeliculas.csproj",
+      "projectPath": "D:\\Usuario\\Documents\\Facultad\\2-Tecnicatura en Programacion\\2do Año\\Laboratorio IV\\TP-Final\\TP-Final_Laboratorio4\\WebAppPeliculas\\WebAppPeliculas.csproj",
       "packagesPath": "C:\\Users\\Joaquin\\.nuget\\packages\\",
-      "outputPath": "D:\\Usuario\\Documents\\Facultad\\2-Tecnicatura en Programacion\\2do Año\\Laboratorio IV\\TP-Final\\WebAppPeliculas\\WebAppPeliculas\\obj\\",
+      "outputPath": "D:\\Usuario\\Documents\\Facultad\\2-Tecnicatura en Programacion\\2do Año\\Laboratorio IV\\TP-Final\\TP-Final_Laboratorio4\\WebAppPeliculas\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

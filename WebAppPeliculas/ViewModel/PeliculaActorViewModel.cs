@@ -9,6 +9,7 @@ namespace WebAppPeliculas.ViewModel
     public class PeliculaActorViewModel
     {
         public List<PeliculaActor> PeliculasActores { get; set; }
+
         public List<Persona> Actores { get; set; }
         public List<Pelicula> Peliculas { get; set; }
     }
