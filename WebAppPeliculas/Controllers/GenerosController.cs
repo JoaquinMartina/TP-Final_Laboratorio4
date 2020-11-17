@@ -141,8 +141,30 @@ namespace WebAppPeliculas.Controllers
         {
             var genero = await _context.Generos.FindAsync(id);
             _context.Generos.Remove(genero);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException ex)
+            {
+                if (ex.InnerException.Message.Contains("REFERENCE constraint"))
+                {
+                    ModelState.AddModelError(string.Empty, "Ocurrio un error!. Existen películas registradas con este género!");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, ex.InnerException.Message);
+                }
+                 
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return View(genero);
         }
 
         private bool GeneroExists(int id)
