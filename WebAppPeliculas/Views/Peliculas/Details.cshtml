@@ -7,7 +7,12 @@
 <h1>@Html.DisplayFor(model => model.Titulo)<span> </span><span>(@Html.DisplayFor(model => model.FechaEstreno.Year))</span></h1><br />
 <p>
     <span class="text-primary">
-        @Html.DisplayFor(model => model.Genero.Descripcion)
+        @Html.DisplayFor(model => model.Genero.Descripcion) <span class="text-dark">-</span>
+
+        @foreach (var item in Model.PeliculasGeneros)
+        {
+            <span>@Html.DisplayFor(modelItem => item.Genero.Descripcion) <span class="text-dark">-</span></span> 
+        }
     </span> |
     <span>
         @Html.DisplayFor(model => model.FechaEstreno.Day)

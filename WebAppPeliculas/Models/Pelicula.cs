@@ -38,5 +38,7 @@ namespace WebAppPeliculas.Models
         public bool Cartelera { get; set; }
 
         public List<PeliculaActor> PeliculasActores { get; set; }
+
+        public List<PeliculaGenero> PeliculasGeneros { get; set; } 
     }
 }
