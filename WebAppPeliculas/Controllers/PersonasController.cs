@@ -100,9 +100,17 @@ namespace WebAppPeliculas.Controllers
                     }
                 }
 
-                _context.Add(persona);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(persona);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Esta persona ya se encuentra cargada!");
+                }
             }
             return View(persona);
         }

@@ -87,9 +87,16 @@ namespace WebAppPeliculas.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(peliculaActor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(peliculaActor);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "La película ya contiene el actor elegido!");
+                }
             }
             ViewData["PersonaId"] = new SelectList(_context.Personas, "Id", "Apellido", peliculaActor.PersonaId);
             ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Titulo", peliculaActor.PeliculaId);
