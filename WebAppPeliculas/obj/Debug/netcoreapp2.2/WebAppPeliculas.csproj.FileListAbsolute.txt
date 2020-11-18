@@ -94,3 +94,9 @@ D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\WebAppPeliculas.dll
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\WebAppPeliculas.pdb
 D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\WebAppPeliculas.csproj.CopyComplete
+D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculasGeneros\Create.g.cshtml.cs
+D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculaGeneroes\Create.g.cshtml.cs
+D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculaGeneroes\Delete.g.cshtml.cs
+D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculaGeneroes\Details.g.cshtml.cs
+D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculaGeneroes\Edit.g.cshtml.cs
+D:\Usuario\Documents\Facultad\2-Tecnicatura en Programacion\2do Año\Laboratorio IV\TP-Final\TP-Final_Laboratorio4\WebAppPeliculas\obj\Debug\netcoreapp2.2\Razor\Views\PeliculaGeneroes\Index.g.cshtml.cs

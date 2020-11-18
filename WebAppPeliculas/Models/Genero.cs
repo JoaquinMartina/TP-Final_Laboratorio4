@@ -14,5 +14,6 @@ namespace WebAppPeliculas.Models
         [Display(Name = "Género")]
         public string Descripcion { get; set; }
 
+        public List<PeliculaGenero> PeliculasGeneros { get; set; }
     }
 }

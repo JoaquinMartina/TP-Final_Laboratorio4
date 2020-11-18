@@ -61,6 +61,8 @@ namespace WebAppPeliculas.Controllers
 
             var pelicula = _context.Peliculas
                 .Include(p => p.Genero)
+                .Include(p => p.PeliculasGeneros)
+                .ThenInclude(p => p.Genero)
                 .Include(p => p.PeliculasActores)
                 .ThenInclude(p => p.Actor)
                 .FirstOrDefaultAsync(m => m.Id == id);
