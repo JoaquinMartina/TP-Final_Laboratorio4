@@ -108,9 +108,17 @@ namespace WebAppPeliculas.Controllers
                     }
                 }
 
-                _context.Add(pelicula);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(pelicula);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Esta película ya se encuentra cargada!");
+                }
             }
             ViewData["GeneroId"] = new SelectList(_context.Generos, "Id", "Descripcion", pelicula.GeneroId);
             return View(pelicula);

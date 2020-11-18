@@ -63,9 +63,17 @@ namespace WebAppPeliculas.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(peliculaGenero);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Generos");
+                try
+                {
+                    _context.Add(peliculaGenero);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index", "Generos");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "La película ya contiene el género elegido!");
+                }
+
             }
             ViewData["GeneroId"] = new SelectList(_context.Generos, "Id", "Descripcion", peliculaGenero.GeneroId);
             ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Titulo", peliculaGenero.PeliculaId);
