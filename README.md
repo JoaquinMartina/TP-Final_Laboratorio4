@@ -1,4 +1,4 @@
-# TP-Final Laboratorio de Computación 4
+# TP-Final Programación 4
 Trabajo Practico  .Net Core - EntityFramework 
 
 - Está realizado en Visual Studio 2017, para poder ejecutar la aplicacion, se deben instalar los paquetes NuGet necesarios pero en versiones anteriores a 3.0 :
